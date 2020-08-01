@@ -1,0 +1,280 @@
+<html>
+<head>
+	<title>Watering Plant Simulation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script src="js/jquery.js"></script>
+	<style>
+	th{
+		padding: 47px !important;
+		font-size: 53px;
+	}
+	</style>
+</head>
+<body>
+	<center>
+	<br><br><br>
+		<div style="float:left;width:50%">
+			<table style="width:90%;" border="1">
+				<tr><th id="1" onclick="javascript:mark(this)"> </th><th id="2" onclick="javascript:mark(this)"> </th><th id="3" onclick="javascript:mark(this)"> </th></tr>
+				<tr><th id="4" onclick="javascript:mark(this)"> </th><th id="5" onclick="javascript:mark(this)"> </th><th id="6" onclick="javascript:mark(this)"> </th></tr>
+				<tr><th id="7" onclick="javascript:mark(this)"> </th><th id="8" onclick="javascript:mark(this)"> </th><th id="9" onclick="javascript:mark(this)"> </th></tr>	
+			</table>
+		</div>
+		<div style="float:right;width:50%">
+			<div style="border:1px solid black;padding:30px;width:50%">	
+				Player 1:
+				<select name="player1" id="p1" style="width: 136px;height: 39px;font-size: 26px;" onchange="javascript:assign_symbol2();">
+					<option value="x">x</option>
+					<option value="0">0</option>
+				</select><br><br>
+				Player 2:
+				<input type="text" name="player2" id="p2" style="width: 136px;height: 39px;font-size: 26px;"><br><br>
+				<button onclick="javascript:start_game();">Start Game</button>
+				<br>
+				<h2><p id="turn"></p></h2>
+				<div id="players_turn" hidden></div>
+			</div>
+		</div>
+	</center>
+	<script>
+		var p1_obj=document.getElementById("p1");
+		var p2_obj=document.getElementById("p2");
+		var turn=document.getElementById("turn");
+		var players_turn=document.getElementById("players_turn");
+		var c1=document.getElementById("1");
+		var c2=document.getElementById("2");
+		var c3=document.getElementById("3");
+		var c4=document.getElementById("4");
+		var c5=document.getElementById("5");
+		var c6=document.getElementById("6");
+		var c7=document.getElementById("7");
+		var c8=document.getElementById("8");
+		var c9=document.getElementById("9");
+		
+		function assign_symbol2()
+		{
+			if(p1_obj.value=="x")
+				p2_obj.value="0";
+			else if(p1_obj.value="0")
+				p2_obj.value="x";
+			else
+				alert("Unexpected Error!");				
+		}
+		function start_game()
+		{
+			p1_obj.disabled=true;
+			p2_obj.disabled=true;
+			players_turn.innerHTML="1";
+			turn.innerHTML="Player 1's Turn!";			
+			
+		}
+		function mark(obj)
+		{
+			var whos_turn = players_turn.innerHTML;
+			var cell=obj.id;
+			if(whos_turn=="1")
+			{
+				obj.innerHTML=p1_obj.value;
+				obj.disabled = true;
+				players_turn.innerHTML="2";
+				turn.innerHTML="Player 2's Turn!";
+			}
+			if(whos_turn=="2")
+			{
+				obj.innerHTML=p2_obj.value;
+				obj.disabled = true;
+				players_turn.innerHTML="1";
+				turn.innerHTML="Player 1's Turn!";
+			}
+
+			check();
+			
+		}
+		function check()
+		{
+				if(c1.innerHTML=="0" && c2.innerHTML=="0" && c3.innerHTML=="0")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c4.innerHTML=="0" && c5.innerHTML=="0" && c6.innerHTML=="0")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c7.innerHTML=="0" && c8.innerHTML=="0" && c9.innerHTML=="0")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c1.innerHTML=="0" && c4.innerHTML=="0" && c7.innerHTML=="0")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c2.innerHTML=="0" && c5.innerHTML=="0" && c8.innerHTML=="0")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c3.innerHTML=="0" && c6.innerHTML=="0" && c9.innerHTML=="0")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c1.innerHTML=="0" && c5.innerHTML=="0" && c9.innerHTML=="0")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c3.innerHTML=="0" && c5.innerHTML=="0" && c7.innerHTML=="0")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+			
+			
+				if(c1.innerHTML=="x" && c2.innerHTML=="x" && c3.innerHTML=="x")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c4.innerHTML=="x" && c5.innerHTML=="x" && c6.innerHTML=="x")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c7.innerHTML=="x" && c8.innerHTML=="x" && c9.innerHTML=="x")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c1.innerHTML=="x" && c4.innerHTML=="x" && c7.innerHTML=="x")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c2.innerHTML=="x" && c5.innerHTML=="x" && c8.innerHTML=="x")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c3.innerHTML=="x" && c6.innerHTML=="x" && c9.innerHTML=="x")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c1.innerHTML=="x" && c5.innerHTML=="x" && c9.innerHTML=="x")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+				if(c3.innerHTML=="x" && c5.innerHTML=="x" && c7.innerHTML=="x")
+				{
+					if(players_turn.innerHTML=="2")
+					{
+						alert("Player 1 Winner!");turn.innerHTML="Player 1 Winner!";players_turn.innerHTML="Player 1 Winner!";
+					}
+					if(players_turn.innerHTML=="1")
+					{
+						alert("Player 2 Winner!");turn.innerHTML="Player 2 Winner!";
+					}
+				}
+			
+			
+			
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<html>
+<head>
+	<title>Watering Plant Simulation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/w3.css">
+	<style>
+	.pipe
+	{
+		width: 52px;
+    margin-top: 61px;
+	    margin-left: -6px;
+	}
+	img {
+    margin-bottom: 2px;
+	}
+	</style>
+	<script src="js/jquery.js"></script>
+
+</head>
+<body>
+<div class="w3-container w3-blue">
+  <h2 class="w3-half w3-left">Watering Plant Simulation</h2>
+  <div class="w3-half w3-container w3-padding"><button class="w3-btn w3-round w3-right" onclick="javascript:startSimulation();">Start Simulation</button></div>
+</div>
+<div>
+	<div class="w3-row" style="margin-top:10px;margin-left:10%;">
+		<div class="w3-col l2 m2 s2 w3-card" style="margin-left:10px;">
+			<button class="w3-btn w3-black">
+				Plant<span class="w3-badge w3-margin-left w3-white">1</span>
+			</button><span class="w3-badge w3-margin-left w3-white" id="cwatervol1"></span>
+			<div  id="plant1">
+				<img src="img/simple.png" width="100px" style="margin-top:62px;">
+			</div>
+		</div>
+		
+		<div class="w3-col l2 m2 s2 w3-card" style="margin-left:10px;">
+			<button class="w3-btn w3-black">
+				Plant<span class="w3-badge w3-margin-left w3-white">2</span>
+			</button>
+			<div id="plant2">
+				<img src="img/simple.png" width="100px" style="margin-top:62px;">
+			</div>
+		</div>
+		
+		<div class="w3-col l2 m2 s2 w3-card" style="margin-left:10px;">
+			<button class="w3-btn w3-black">
+				Plant<span class="w3-badge w3-margin-left w3-white">3</span>
+			</button>			
+			<div  id="plant3">
+				<img src="img/simple.png" width="100px" style="margin-top:62px;">
+			</div>
+		</div>
+
+		<div class="w3-col l2 m2 s2 w3-card" style="margin-left:10px;">
+			<button class="w3-btn w3-black">
+				Plant<span class="w3-badge w3-margin-left w3-white">4</span>
+			</button>
+			<div  id="plant4">
+				<img src="img/simple.png" width="100px" style="margin-top:62px;">
+			</div>
+		</div>
+		
+		<div class="w3-col l2 m2 s2 w3-card"  style="margin-left:10px;">
+			<button class="w3-btn w3-black">
+				Plant<span class="w3-badge w3-margin-left w3-white">5</span>
+			</button>
+			<div  id="plant5">
+				<img src="img/simple.png" width="100px" style="margin-top:62px;">		
+			</div>
+		</div>
+	</div>
+	
+	<div class="w3-row">
+		<div class="w3-col l8">
+		<center><br>
+		<h3><b>Summary</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b style="color:green" id="tank_status"> Tank Capacity: <span id="tank_capacity">0</span>/50</h3></b>
+			<table class="w3-table w3-striped w3-border w3-card-2" style="width:90%">
+				<tr><th>Plant No.</th><th>Plant Name</th><th class="w3-center">Water Required<br>(in Litre)</th><th class="w3-center">Water Consumed<br>(in Litre)</th></tr>
+				<tr><td>1</td><td>Tulip</td><td class="w3-center" id="rvol1"></td>
+					<td class="w3-center" ><input type="number" id="cvol1" value="0"/></td>
+				</tr>
+				<tr><td>2</td><td>Lilli</td><td class="w3-center" id="rvol2"></td>
+					<td class="w3-center" ><input type="number" id="cvol2" value="0"/></td>
+				</tr>
+				<tr><td>3</td><td>Jurbera</td><td class="w3-center" id="rvol3"></td>
+					<td class="w3-center" ><input type="number" id="cvol3" value="0"/></td>
+				</tr>
+				<tr><td>4</td><td>Sunflower</td><td class="w3-center" id="rvol4"></td>
+					<td class="w3-center" ><input type="number" id="cvol4" value="0"/></td>
+				</tr>
+				<tr><td>5</td><td>Rose</td><td class="w3-center" id="rvol5"></td>
+					<td class="w3-center"><input type="number" id="cvol5" value="0"/></td>
+				</tr>
+			</table>
+		</center>
+		</div>
+		<div class="w3-col l4 "><br><br><br>
+			<center>
+				<div class="w3-container w3-padding w3-border" style="width:60%">
+				<br>
+					<select class="w3-select w3-border" name="option" style="width:200px;" id="PlantNo">
+						<option value="" disabled selected>Choose your Plant</option>
+						<option value="1">Plant No.1</option>
+						<option value="2">Plant No.2</option>
+						<option value="3">Plant No.3</option>
+						<option value="4">Plant No.4</option>
+						<option value="5">Plant No.5</option>
+					</select>
+					<br><br>
+					<label><b>Water Required Litres</b></label>
+					<input type="number" class="w3-input w3-border" id="volReq" style="width:200px;" placeholder="Enter Volume">
+					<br>
+					<button onclick="javascript:setVolume();" class="w3-btn w3-round w3-green">Set Volume</button>
+					<br><br>
+				</div>
+			</center>
+		</div>
+	</div>
+</div>
+
+<script>
+	function setVolume()
+	{	
+			var plantNo=document.getElementById("PlantNo").value;
+			var volReq=document.getElementById("volReq").value;
+			document.getElementById("rvol"+plantNo).innerHTML=volReq;
+	}
+	var time1=0;
+	var time2=0;
+	var time3=0;
+	var time4=0;
+	var time5=0;
+	var total=0;
+	function tank_check()
+	{
+		var pl1=document.getElementById("cvol1").value;
+		var pl2=document.getElementById("cvol2").value;
+		var pl3=document.getElementById("cvol3").value;
+		var pl4=document.getElementById("cvol4").value;
+		var pl5=document.getElementById("cvol5").value;
+		var total = Number(pl1) + Number(pl2) + Number(pl3)+ Number(pl4)+ Number(pl5);
+		if(total>= 50)
+		{
+			alert('Tank is Empty! Please Fill the water!');
+			document.getElementById("tank_status").style.color = "red";
+		}
+		else{
+				document.getElementById("tank_capacity").innerHTML = total;
+		}
+	
+	}
+	
+	function end()
+	{
+	
+	}
+	function startSimulation()
+	{
+			tank_check();
+			var volReq=document.getElementById("rvol1").innerHTML;
+			var time1 = volReq * 1000;
+				
+						setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+							if(volReq>0)
+							{
+								document.getElementById("plant1").innerHTML='<img src="img/watering.gif" width="150px">';
+								document.getElementById("plant2").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant3").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant4").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant5").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								
+								console.log(volReq);
+							}
+							else
+							{
+								document.getElementById("plant1").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant1").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant1").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant1").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								
+							}
+							document.getElementById("cvol1").value =Number(document.getElementById("cvol1").value) + Number(volReq);
+						   if(volReq > 0) {            //  if the counter < 10, call the loop function
+								if(total<50)
+								{
+									startSimulation2();  //  ..  again which will trigger another 
+								}
+							  }                        //  ..  setTimeout()
+							
+					   }, time1);
+			
+	}
+	function startSimulation2()
+	{
+			
+			tank_check();
+			var volReq=document.getElementById("rvol2").innerHTML;
+			var time2 = volReq * 1000;
+						setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+							if(volReq>0)
+							{
+								document.getElementById("plant2").innerHTML='<img src="img/watering.gif" width="150px">';
+								document.getElementById("plant1").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant3").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant4").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant5").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+
+								
+								console.log(volReq);
+							}
+							else
+							{
+								document.getElementById("plant2").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								
+							}
+
+						   if(volReq > 0) {            //  if the counter < 10, call the loop function
+ 								if(total<50)
+								{
+									startSimulation3();             //  ..  again which will trigger another 
+								 }
+							  }                        //  ..  setTimeout()
+							  document.getElementById("cvol2").value =Number(document.getElementById("cvol2").value) + Number(volReq);
+					   }, time2);
+			
+	}
+	function startSimulation3()
+	{
+	
+			tank_check();
+			var volReq=document.getElementById("rvol3").innerHTML;
+			var time3 = volReq * 1000;
+						setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+							if(volReq>0)
+							{
+								document.getElementById("plant3").innerHTML='<img src="img/watering.gif" width="150px">';
+								document.getElementById("plant1").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant2").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant4").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant5").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+
+								
+								console.log(volReq);
+							}
+							else
+							{
+								document.getElementById("plant3").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								
+							}
+						   if(volReq > 0) {            //  if the counter < 10, call the loop function
+ 								if(total<50)
+								{
+									startSimulation4();             //  ..  again which will trigger another 
+								}
+							  }                        //  ..  setTimeout()
+							document.getElementById("cvol3").value =Number(document.getElementById("cvol3").value) + Number(volReq);
+					   }, time3);
+			
+	}
+	function startSimulation4()
+	{
+	
+			tank_check();
+			var volReq=document.getElementById("rvol4").innerHTML;
+			var time4 = volReq * 1000;
+						setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+							if(volReq>0)
+							{
+								document.getElementById("plant4").innerHTML='<img src="img/watering.gif" width="150px">';
+								document.getElementById("plant1").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant2").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant3").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant5").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								
+								console.log(volReq);
+							}
+							else
+							{
+								document.getElementById("plant4").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								
+							}
+						   if(volReq > 0) {            //  if the counter < 10, call the loop function
+								if(total<50)
+								{								
+									startSimulation5();             //  ..  again which will trigger another 
+								}
+							  }                        //  ..  setTimeout()
+							document.getElementById("cvol4").value =Number(document.getElementById("cvol4").value) + Number(volReq);
+					   }, time4);
+			
+	}
+	function startSimulation5()
+	{
+	
+			tank_check();
+			var volReq=document.getElementById("rvol5").innerHTML;
+			var time5 = volReq * 1000;
+						setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+							if(volReq>0)
+							{
+								document.getElementById("plant5").innerHTML='<img src="img/watering.gif" width="150px">';
+								document.getElementById("plant1").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant2").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant3").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								document.getElementById("plant4").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								console.log(volReq);
+							}
+							else
+							{
+								document.getElementById("plant1").innerHTML='<img src="img/simple.png" width="100px" style="margin-top:62px;">';
+								
+							}
+						   if(volReq > 0) {            //  if the counter < 10, call the loop function
+   								if(total<50)
+								{
+									startSimulation();             //  ..  again which will trigger another 
+								}
+							  }                        //  ..  setTimeout()
+						document.getElementById("cvol5").value =Number(document.getElementById("cvol5").value) + Number(volReq);
+					   }, time5);
+			
+	}
+</script>
+
+</body>
+</html>
